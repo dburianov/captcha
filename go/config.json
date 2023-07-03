@@ -1,0 +1,31 @@
+{
+    "salt": "123",
+    "primenumber": 29,
+    "authexpire": 3600,
+    "rand": {
+        "rand_lenght": 24,
+        "rand_count": 1,
+        "characterUp": 10,
+        "characterDown": 10,
+        "characterInt": 10,
+        "characterSpec": 10
+    },
+    "captcha": {
+        "textlength": 6,
+        "salt": "123",
+        "encrypttimes": 16,
+        "charpreset": "ABCDEFGHKLMNOPQRSTUVWXYZabcdefghklmnoprstuvwxyz0123456789",
+        "text": {
+            "width": 250,
+            "hight": 100
+        },
+        "math": {
+            "width": 250,
+            "hight": 100
+        },
+        "cookie": {
+            "expire": 120
+        }
+    },
+    "logginglevel": "debug"
+}

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Captcha</title>
+</head>
+<body>
+    <img src="/captcha/text" alt="captcha">
+    <br>
+    <img src="/captcha/math" alt="captcha">
+    <div>
+        <form method="POST" action="/captcha/check">
+            <label>Captcha</label><input name="captcha" type="text" value="" />
+            <br>
+            <label>Math</label><input name="math" type="text" value="" />
+            <br>
+            <input type="submit" value="submit" />
+        </form>
+      </div>
+</body>
+</html>
