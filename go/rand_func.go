@@ -32,27 +32,43 @@ func rndGenerateString(
 	csSpec int) string {
 
 	var stringTotal string
-	srcString := make([]byte, len(charsetDown)*csDown+len(charsetUp)*csUp+len(charsetInt)*csInt+len(charsetSpec)*csSpec)
+	charsetDownCount := len(charsetDown) * csDown
+	charsetUpCount := len(charsetUp) * csUp
+	charsetIntCount := len(charsetInt) * csInt
+	charsetSpecCount := len(charsetSpec) * csSpec
+	srcStringLen := charsetDownCount + charsetUpCount + charsetIntCount + charsetSpecCount
+	srcStringDown := make([]byte, charsetDownCount)
+	srcStringUp := make([]byte, charsetUpCount)
+	srcStringInt := make([]byte, charsetIntCount)
+	srcStringSpec := make([]byte, charsetSpecCount)
 
-	for i := 0; i < csUp; i++ {
-		srcString[i] = charsetUp[seededRand.Intn(len(charsetUp))]
+	if *loggingLevel == "debug" {
+		log.Println("srcStringLen", srcStringLen)
 	}
-	stringTotal += string(srcString)
-	for i := 0; i < csDown; i++ {
-		srcString[i] = charsetDown[seededRand.Intn(len(charsetDown))]
+
+	for i := 0; i < charsetUpCount; i++ {
+		srcStringUp[i] = charsetUp[seededRand.Intn(len(charsetUp))]
 	}
-	stringTotal += string(srcString)
-	for i := 0; i < csInt; i++ {
-		srcString[i] = charsetInt[seededRand.Intn(len(charsetInt))]
+	stringTotal += string(srcStringUp)
+
+	for i := 0; i < charsetDownCount; i++ {
+		srcStringDown[i] = charsetDown[seededRand.Intn(len(charsetDown))]
 	}
-	stringTotal += string(srcString)
-	for i := 0; i < csSpec; i++ {
-		srcString[i] = charsetSpec[seededRand.Intn(len(charsetSpec))]
+	stringTotal += string(srcStringDown)
+
+	for i := 0; i < charsetIntCount; i++ {
+		srcStringInt[i] = charsetInt[seededRand.Intn(len(charsetInt))]
 	}
-	stringTotal += string(srcString)
+	stringTotal += string(srcStringInt)
+
+	for i := 0; i < charsetSpecCount; i++ {
+		srcStringSpec[i] = charsetSpec[seededRand.Intn(len(charsetSpec))]
+	}
+	stringTotal += string(srcStringSpec)
 
 	if *loggingLevel == "debug" {
 		log.Println("string(srcString):", stringTotal)
+		log.Println(len(stringTotal))
 	}
 	return StringWithCharset(length, stringTotal)
 }
